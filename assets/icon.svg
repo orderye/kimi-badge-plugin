@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 1024 1024" role="img" aria-label="KimiCode">
+  <title>KimiCode</title>
+  <defs>
+    <linearGradient id="kimiBlob" x1="0.25" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#4FA3FF"/>
+      <stop offset="0.55" stop-color="#3B93FF"/>
+      <stop offset="1" stop-color="#1F7BFF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1024" height="1024" rx="120" fill="#E6CFB1"/>
+  <path d="M0 60A60 60 0 0 1 60 0H964A60 60 0 0 1 1024 60V900C1024 1002 700 1012 512 1012S0 1002 0 900Z" fill="#FFFFFF"/>
+
+  <path d="M245 600C205 490 230 340 320 280C365 250 430 242 480 248C565 258 655 295 700 345C742 392 750 470 730 525C720 550 710 570 700 600Z" fill="url(#kimiBlob)"/>
+  <path d="M709 330V296A50 50 0 0 1 759 246H768A24 24 0 0 1 792 270V296A34 34 0 0 1 758 330Z" fill="#1783FF"/>
+
+  <g fill="#FFFFFF">
+    <rect x="454" y="362" width="68" height="122" rx="34" transform="rotate(4 488 423)"/>
+    <rect x="585" y="350" width="66" height="120" rx="33" transform="rotate(-4 618 410)"/>
+  </g>
+
+  <rect x="217" y="575" width="587" height="191" rx="28" fill="#002E58"/>
+  <path d="M266 636L322 671L266 706" fill="none" stroke="#FFFFFF" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="365" y="703" width="77" height="24" rx="12" fill="#007CFF"/>
+</svg>

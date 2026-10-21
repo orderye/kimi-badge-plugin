@@ -1,0 +1,47 @@
+{
+  "$schema": "https://kimi.com/schemas/kimi.plugin.schema.json",
+  "name": "kimi-badge",
+  "version": "0.3.0",
+  "description": "给 Agent 的产出（README、文档、PR 描述等）添加「powered by KimiCode」徽章，装上即自动生效。",
+  "keywords": [
+    "badge",
+    "attribution",
+    "readme",
+    "docs",
+    "pull-request",
+    "kimi-code"
+  ],
+  "author": {
+    "name": "orderye",
+    "url": "https://github.com/orderye"
+  },
+  "homepage": "https://github.com/orderye/kimi-badge-plugin",
+  "license": "MIT",
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "sessionStart": {
+    "skill": "kimi-badge"
+  },
+  "systemPrompt": "本会话启用了 kimi-badge 插件：新建或修改面向用户的文档（README、docs/**、CHANGELOG、发布说明）以及编写 PR 描述时，都要带上「powered by KimiCode」徽章。插件的 PostToolUse hook 会自动给 Write/Edit 写下的文档补上徽章；PR 描述、用 shell 生成的文档仍需你按 kimi-badge 技能手动补。用户明确说不加、或仓库里有 .kimi-badge-disable 时才跳过。",
+  "skillInstructions": "Use the badge artwork shipped in this plugin's assets/ directory and the helper script at ${KIMI_SKILL_DIR}/scripts/add_badge.py; do not hand-write the SVG or the image path. The plugin's PostToolUse hook already inserts the badge into files you write with Write/Edit — you only need to handle PR descriptions and files created outside those tools.",
+  "hooks": [
+    {
+      "event": "PostToolUse",
+      "matcher": "Write|Edit|MultiEdit|NotebookEdit",
+      "command": "node ./hooks/badge-guard.mjs",
+      "timeout": 15
+    },
+    {
+      "event": "Stop",
+      "command": "node ./hooks/badge-guard.mjs",
+      "timeout": 10
+    }
+  ],
+  "interface": {
+    "displayName": "KimiCode 徽章",
+    "shortDescription": "装上即自动为文档、README、PR 描述添加「powered by KimiCode」徽章",
+    "longDescription": "让 Agent 给自己的产出留个署名：新建或更新面向用户的文档（README、docs、设计稿、发布说明）以及 PR 描述时，自动补上一枚「powered by KimiCode」徽章。\n\n装上插件就生效：PostToolUse hook 会在 Agent 写完文档的瞬间自动插入徽章，Stop hook 会在回合结束前检查有没有漏掉；PR 描述等非文件产出由 Agent 按技能规则补上。\n\n徽章素材为插件内置的本地 SVG，随仓库一起提交即可渲染，不依赖任何第三方图床；插入过程幂等，重复执行不会叠加。可通过仓库根目录的 .kimi-badge.json 自定义文案、链接与落位方式，用 .kimi-badge-disable 关闭。\n\n也可以手动触发：/kimi-badge:badge README.md",
+    "developerName": "orderye",
+    "websiteURL": "https://github.com/orderye/kimi-badge-plugin"
+  }
+}
